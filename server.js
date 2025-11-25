@@ -4,10 +4,12 @@ import helmet from "helmet";
 import dotenvFlow from "dotenv-flow";
 import mongoose from "mongoose";
 
+
 import createUser from "./CRMS/routes/create.route.js";
 import getUser from "./CRMS/routes/get.route.js";
 import updateUser from "./CRMS/routes/update.route.js";
 import deleteUser from "./CRMS/routes/delete.route.js";
+import rootPath from "./CRMS/routes/rootpath.route.js";
 
 dotenvFlow.config();
 
@@ -18,7 +20,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 
-app.use("/api", createUser, getUser, updateUser, deleteUser);
+app.use("/api", createUser, getUser, updateUser, deleteUser, rootPath);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Server Not FOUND!!" });

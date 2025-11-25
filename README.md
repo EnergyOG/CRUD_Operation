@@ -47,3 +47,8 @@ The Delete route allows removing users from the database. You can delete individ
 - dotenv
 - CORS
 - Helmet
+
+## RUN IN POSTMAN
+Click the button below to try the API in Postman:
+
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://app.getpostman.com/run-collection/39196290-8f96c3d1-f1b2-4413-809c-b5b18fe512f7?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D39196290-8f96c3d1-f1b2-4413-809c-b5b18fe512f7%26entityType%3Dcollection%26workspaceId%3D4ed75314-1bc2-4008-b4d3-f75df54cea66#?env%5Bcrud_operation%5D=W3sia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0Iiwic2Vzc2lvblZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaSIsImNvbXBsZXRlU2Vzc2lvblZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaSIsInNlc3Npb25JbmRleCI6MH1d)

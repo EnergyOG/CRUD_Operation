@@ -76,6 +76,7 @@ paths:
           required: true
           schema:
             type: string
+            description: MongoDB Object ID of the user
       responses:
         "200":
           description: User with ID deleted successfully
@@ -87,14 +88,16 @@ paths:
                   message:
                     type: string
         "400":
-          description: User not found
+          description: Invalid ID format or user not found
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+              examples:
+                invalidId:
+                  value:
+                    message: Invalid ID format
+                notFound:
+                  value:
+                    message: User not found
         "500":
           $ref: "#/components/responses/ServerError"
   /deleteByEmail/{email}:

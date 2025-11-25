@@ -1,68 +1,68 @@
 import userModel from "../model/userModel.js";
-class deleteController{
+import mongoose from "mongoose";
 
-    async handleDeleteById(req, res){
-        try{
-            const { id } = req.params;
-            const existingId = await userModel.findByIdAndDelete(id);
+class DeleteController {
+  async handleDeleteById(req, res) {
+    try {
+      const { id } = req.params;
 
-            if( !existingId){
-                return res.status(400).json({
-                    message: "User not found",
-                }
-            )};
+      if (!mongoose.isValidObjectId(id)) {
+        return res.status(400).json({
+          message: "Invalid ID format",
+        });
+      }
+      
+      const deletedUser = await userModel.findByIdAndDelete(id);
+      if(!deletedUser){
+        return res.status(404).json({
+            message: "User not found"
+        });
+      }
 
-            return res.status(200).json({
-                message: `User with ID deleted successfully`
-            });
-        }
-        catch(err){
-            return res.status(500).json({
-                message: "Internal Server Error",
-                error: err.message,
-            })
-        }
+      return res.status(200).json({
+        message: `User with ID deleted successfully`
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error",
+        error: err.message,
+      });
+    }
+  }
+
+  async handleDeleteByEmail(req, res){
+  try{
+    const { email } = req.params;
+    const existingEmail = await userModel.findOneAndDelete({ email });
+
+    if(!existingEmail){
+      return res.status(400).json({ message: "User not found" });
     }
 
-    async handleDeleteByEmail(req, res){
-        try{
-            const { email } = req.params;
-
-            const existingEmail = await userModel.findOneAndDelete(email);
-
-            if(!existingEmail ){
-                return res.status(400).json({
-                    message: "User not found",
-                }
-            )};
-
-            return res.status(200).json({
-                message: `User with provided email deleted successfully`
-            });
-        }
-        catch(err){
-            return res.status(500).json({
-                message: "Internal Server Error",
-                error: err.message,
-            })
-        }
-    }
-
-    async handleDeleteAll(req, res){
-        try{
-            await userModel.deleteMany({});
-
-            return res.status(200).json({
-                message: `All users deleted successfully`
-            });
-        }
-        catch(err){
-            return res.status(500).json({
-                message: "Internal Server Error",
-                error: err.message,
-            })
-        }
-    }
+    return res.status(200).json({
+      message: `User with email deleted successfully`
+    });
+  } catch(err){
+    return res.status(500).json({ message: "Internal Server Error", error: err.message });
+  }
 }
-const deleteUser = new deleteController();
+
+
+  async handleDeleteAll(req, res) {
+    try {
+      await userModel.deleteMany({});
+
+      return res.status(200).json({
+        message: `All users deleted successfully`
+      });
+    } catch (err) {
+      return res.status(500).json({
+        message: "Internal Server Error",
+        error: err.message,
+      });
+    }
+  }
+}
+
+const deleteUser = new DeleteController();
 export default deleteUser;

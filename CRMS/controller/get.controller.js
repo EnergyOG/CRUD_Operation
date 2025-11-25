@@ -13,6 +13,7 @@ class getController {
     const { email, password } = req.body;
 
     const existingUser = await userModel.findOne({ email });
+    
     if (!existingUser) {
       return res.status(400).json({
         message: "User not found",

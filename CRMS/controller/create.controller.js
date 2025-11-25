@@ -51,34 +51,39 @@ class createController {
       });
     } catch (err) {
       console.error("Registration error:", err);
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error creating user",
         error: err.message,
       });
     }
   }
 
-  async newUser(req, res){
-    try{
-       const {username, email, password} = req.body;
-       const user = new userModel({
-        username,
-        email,
-        password
-       });
-       await userModel.create(user);
-       res.status(201).json({
-        message: "New user created successfully",
-        data: user
-       });
+  async newUser(req, res) {
+  try {
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
     }
-    catch(err){
-      res.status(500).json({
-        message: "Error creating new user",
-        error: err.message
-      });
-    }
+
+    const user = await userModel.create({
+      username,
+      email,
+      password
+    });
+
+    return res.status(201).json({
+      message: "New user created successfully",
+      data: user
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Error creating new user",
+      error: err.message
+    });
   }
+}
+
 }
 const createUser = new createController();
 export default createUser;

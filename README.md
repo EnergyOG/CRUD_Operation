@@ -4,17 +4,17 @@ This project is a **backend REST API**  built using **Node.js**, **Express.js**,
 
 ## **CRUD Endpoints Overview**
 
-### 🖊️ Create
+### Create
 The Create route in the REST API allows the creation of new users by providing details such as username, email, and password.
 
 
-### 📚 Read
+###  Read
 The Read route enables fetching user information or logging in users using their personal credentials, like email and password.
 
-### 📑 Update
+### Update
 The Update route is used to modify existing user information, either by email or user ID, allowing updates to their stored details.
 
-### 🚫 Delete
+### Delete
 The Delete route allows removing users from the database. You can delete individual users based on their email or ID, or remove all users at once.---
 
 
@@ -38,7 +38,7 @@ The Delete route allows removing users from the database. You can delete individ
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Node.js
 - Express.js
